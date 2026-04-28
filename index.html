@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>황금의 성 - Golden Castle</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Courier New', monospace;
+      color: #d4af37;
+      overflow: hidden;
+    }
+    #gameTitle {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 6px;
+      text-shadow: 0 0 20px #d4af37, 0 0 40px #d4af37aa;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    #gameSubtitle {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #8a7a3a;
+      margin-bottom: 12px;
+    }
+    #canvasWrapper {
+      position: relative;
+      border: 2px solid #3a2a0a;
+      box-shadow: 0 0 40px #d4af3744, inset 0 0 20px #00000088;
+    }
+    #gameCanvas {
+      display: block;
+      image-rendering: pixelated;
+    }
+    #ui-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      pointer-events: none;
+    }
+    #hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 14px;
+    }
+    .hud-panel {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #3a2a0a;
+      padding: 6px 10px;
+      min-width: 160px;
+    }
+    .hud-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #8a7a3a;
+      text-transform: uppercase;
+    }
+    .hud-value {
+      font-size: 16px;
+      font-weight: bold;
+      color: #d4af37;
+    }
+    #controls {
+      margin-top: 10px;
+      font-size: 10px;
+      color: #555;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    #controls span { color: #8a7a3a; }
+    #message-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+    #message-box {
+      background: rgba(0,0,0,0.88);
+      border: 2px solid #d4af37;
+      padding: 24px 48px;
+      text-align: center;
+      display: none;
+    }
+    #message-title {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #d4af37;
+      text-shadow: 0 0 15px #d4af37;
+      margin-bottom: 8px;
+    }
+    #message-sub {
+      font-size: 11px;
+      color: #8a7a3a;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div id="gameTitle">황금의 성</div>
+  <div id="gameSubtitle">Golden Castle — 1984 Arcade Revival</div>
+  <div id="canvasWrapper">
+    <canvas id="gameCanvas" width="800" height="520"></canvas>
+    <div id="ui-overlay">
+      <div id="hud">
+        <div class="hud-panel">
+          <div class="hud-label">Score</div>
+          <div class="hud-value" id="hud-score">000000</div>
+        </div>
+        <div class="hud-panel" style="text-align:center;">
+          <div class="hud-label">Stage</div>
+          <div class="hud-value" id="hud-stage">1</div>
+        </div>
+        <div class="hud-panel" style="text-align:right;">
+          <div class="hud-label">Lives</div>
+          <div class="hud-value" id="hud-lives">♦ ♦ ♦</div>
+        </div>
+      </div>
+    </div>
+    <div id="message-overlay">
+      <div id="message-box">
+        <div id="message-title">황금의 성</div>
+        <div id="message-sub">PRESS SPACE TO BEGIN</div>
+      </div>
+    </div>
+  </div>
+  <div id="controls">
+    <span>← →</span> Move &nbsp;|&nbsp; <span>↑ ↓</span> Guard/Attack Level &nbsp;|&nbsp;
+    <span>Z</span> Attack &nbsp;|&nbsp; <span>X</span> Block &nbsp;|&nbsp;
+    <span>SPACE</span> Jump
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
